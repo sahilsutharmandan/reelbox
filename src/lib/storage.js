@@ -18,7 +18,7 @@ function setItem(key, value) {
 }
 
 export function getWatchlist() {
-  return getItem("reelbox_watchlist", []);
+  return getItem("reelbox_watchlst", []);
 }
 
 export function addToWatchlist(show) {
