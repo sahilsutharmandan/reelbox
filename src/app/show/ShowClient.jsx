@@ -43,7 +43,7 @@ export default function ShowClient() {
   }, [id]);
 
   const { data: episodes, isLoading: episodesLoading } = useQuery({
-    queryKey: ["episodes", activeSeason?.id],
+    queryKey: ["episodes", id],
     queryFn: () => getEpisodesBySeason(activeSeason.id),
     enabled: !!activeSeason,
   });
