@@ -95,10 +95,9 @@ export default function ShowClient() {
         {show.summary && (
           <section>
             <h2 className="text-2xl font-bold text-ink mb-3">Summary</h2>
-            <div
-              className="text-muted leading-relaxed [&>p]:mb-2"
-              dangerouslySetInnerHTML={{ __html: show.summary }}
-            />
+            <p className="text-muted leading-relaxed">
+              {show.summary}
+            </p>
           </section>
         )}
 
