@@ -10,7 +10,7 @@ export default function ShowCard({ show }) {
 
   return (
     <Link href={`/show?id=${show.id}`}>
-      <div className="rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer h-full flex flex-col">
+      <div className="rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer flex flex-col">
         <img
             src={image}
             alt={show.name}
