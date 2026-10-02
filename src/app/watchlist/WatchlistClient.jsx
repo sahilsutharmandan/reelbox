@@ -27,7 +27,7 @@ export default function WatchlistClient() {
 
   function handleWatchedChange(showId, value) {
     const current = progress[showId] || { watched: 0, total: 0 };
-    const watched = Math.max(0, Math.min(Number(value) || 0, current.total));
+    const watched = Math.max(0, Number(value) || 0);
     const updated = setProgress(showId, watched, current.total);
     setProgressState(updated);
   }
