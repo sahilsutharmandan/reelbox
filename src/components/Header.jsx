@@ -24,7 +24,7 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                pathname === link.href
+                pathname.startsWith(link.href)
                   ? "bg-primary/10 text-primary"
                   : "text-muted hover:text-ink hover:bg-gray-100"
               }`}
