@@ -2,7 +2,7 @@ const BASE = "https://api.tvmaze.com";
 
 export async function searchShows(query) {
   if (!query) return [];
-  const res = await fetch(`${BASE}/search/shows?q=${encodeURIComponent(query)}`);
+  const res = await fetch(`${BASE}/search/shows?q=${query}`);
   if (!res.ok) throw new Error("Failed to search shows");
   return res.json();
 }
