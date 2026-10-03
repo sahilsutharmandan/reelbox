@@ -9,7 +9,7 @@ export default function ScheduleCard({ entry }) {
   const network = show.network?.name || show.webChannel?.name;
 
   return (
-    <Link href={`/show?id=${show.id}`}>
+    <Link href={`/show?id=${show.id}`} className="flex flex-col h-full">
       <div className="rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer h-full flex flex-col">
         {image ? (
           <img

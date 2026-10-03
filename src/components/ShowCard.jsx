@@ -1,21 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { extractYear } from "@/lib/format";
 
 export default function ShowCard({ show }) {
-  const image = show.image?.medium;
+  const [imgError, setImgError] = useState(false);
+  const image = show.image?.medium || show.image?.original;
+  const hasImage = Boolean(image) && !imgError;
   const year = extractYear(show.premiered);
   const rating = show.rating?.average;
 
   return (
-    <Link href={`/show?id=${show.id}`}>
-      <div className="rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer flex flex-col">
-        <img
+    <Link href={`/show?id=${show.id}`} className="flex flex-col h-full">
+      <div className="rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer flex flex-col h-full">
+        {hasImage ? (
+          <img
             src={image}
             alt={show.name}
-            className="w-full h-64 object-cover"
+            className="w-full h-64 object-cover flex-shrink-0"
+            onError={() => setImgError(true)}
           />
+        ) : (
+          <div className="w-full h-64 bg-gray-200 flex items-center justify-center text-muted text-sm flex-shrink-0">
+            No Image
+          </div>
+        )}
         <div className="p-4 flex flex-col flex-1">
           <h3 className="font-semibold text-ink text-lg leading-tight mb-1 line-clamp-2">
             {show.name}
