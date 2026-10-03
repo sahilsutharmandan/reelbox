@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import DOMPurify from "isomorphic-dompurify";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getShow, getEpisodesBySeason } from "@/lib/api";
@@ -28,13 +29,12 @@ export default function ShowClient() {
   const seasons = useMemo(() => show?._embedded?.seasons || [], [show]);
   const cast = show?._embedded?.cast || [];
 
-  const [activeSeason, setActiveSeason] = useState(null);
-
-  useEffect(() => {
-    if (seasons.length > 0 && !activeSeason) {
-      setActiveSeason(seasons[0]);
-    }
-  }, [seasons, activeSeason]);
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const activeSeason = seasons.find((season) => season.id === selectedSeason) || seasons[0];
+  const summary = useMemo(
+    () => DOMPurify.sanitize(show?.summary || "", { ALLOWED_TAGS: ["p", "b", "strong", "i", "em", "br"], ALLOWED_ATTR: [] }),
+    [show?.summary]
+  );
 
   useEffect(() => {
     if (id) {
@@ -43,7 +43,7 @@ export default function ShowClient() {
   }, [id]);
 
   const { data: episodes, isLoading: episodesLoading } = useQuery({
-    queryKey: ["episodes", id],
+    queryKey: ["episodes", id, activeSeason?.id],
     queryFn: () => getEpisodesBySeason(activeSeason.id),
     enabled: !!activeSeason,
   });
@@ -95,9 +95,10 @@ export default function ShowClient() {
         {show.summary && (
           <section>
             <h2 className="text-2xl font-bold text-ink mb-3">Summary</h2>
-            <p className="text-muted leading-relaxed">
-              {show.summary}
-            </p>
+            <div
+              className="text-muted leading-relaxed [&>p+p]:mt-3"
+              dangerouslySetInnerHTML={{ __html: summary }}
+            />
           </section>
         )}
 
@@ -107,7 +108,7 @@ export default function ShowClient() {
             <SeasonTabs
               seasons={seasons}
               activeSeason={activeSeason}
-              onSelect={setActiveSeason}
+              onSelect={(season) => setSelectedSeason(season.id)}
             />
             <div className="mt-4">
               {episodesLoading ? (

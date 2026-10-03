@@ -19,7 +19,7 @@ export default function ShowHero({ show, inWatchlist, onToggleWatchlist }) {
       ) : (
         <div className="absolute inset-0 w-full h-full bg-gray-800" />
       )}
-      <div className="absolute inset-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/20" />
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 pb-8 pt-24">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
           {show.name}
