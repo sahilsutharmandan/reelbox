@@ -31,6 +31,10 @@ export default function ShowClient() {
   const [activeSeason, setActiveSeason] = useState(null);
 
   useEffect(() => {
+    setActiveSeason(null);
+  }, [id]);
+
+  useEffect(() => {
     if (seasons.length > 0 && !activeSeason) {
       setActiveSeason(seasons[0]);
     }
@@ -43,9 +47,9 @@ export default function ShowClient() {
   }, [id]);
 
   const { data: episodes, isLoading: episodesLoading } = useQuery({
-    queryKey: ["episodes", id],
+    queryKey: ["episodes", id, activeSeason?.id],
     queryFn: () => getEpisodesBySeason(activeSeason.id),
-    enabled: !!activeSeason,
+    enabled: !!activeSeason?.id,
   });
 
   function handleToggleWatchlist() {
@@ -95,9 +99,10 @@ export default function ShowClient() {
         {show.summary && (
           <section>
             <h2 className="text-2xl font-bold text-ink mb-3">Summary</h2>
-            <p className="text-muted leading-relaxed">
-              {show.summary}
-            </p>
+            <div
+              className="text-muted leading-relaxed [&>p]:mb-3 last:[&>p]:mb-0"
+              dangerouslySetInnerHTML={{ __html: show.summary }}
+            />
           </section>
         )}
 
