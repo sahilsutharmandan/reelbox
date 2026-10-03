@@ -19,19 +19,26 @@ export default function Header() {
           ReelBox
         </Link>
         <nav className="flex items-center gap-1">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                pathname.startsWith(link.href)
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted hover:text-ink hover:bg-gray-100"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  isActive
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted hover:text-ink hover:bg-gray-100"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>

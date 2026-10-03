@@ -17,21 +17,23 @@ function setItem(key, value) {
   }
 }
 
+const WATCHLIST_KEY = "reelbox_watchlist";
+
 export function getWatchlist() {
-  return getItem("reelbox_watchlst", []);
+  return getItem(WATCHLIST_KEY, []);
 }
 
 export function addToWatchlist(show) {
   const list = getWatchlist();
   if (list.some((s) => s.id === show.id)) return list;
   const updated = [...list, show];
-  setItem("reelbox_watchlist", updated);
+  setItem(WATCHLIST_KEY, updated);
   return updated;
 }
 
 export function removeFromWatchlist(showId) {
   const list = getWatchlist().filter((s) => s.id !== showId);
-  setItem("reelbox_watchlist", list);
+  setItem(WATCHLIST_KEY, list);
   return list;
 }
 
