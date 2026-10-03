@@ -1,21 +1,30 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { extractYear } from "@/lib/format";
 
 export default function ShowCard({ show }) {
   const image = show.image?.medium;
+  const [failedImage, setFailedImage] = useState(null);
   const year = extractYear(show.premiered);
   const rating = show.rating?.average;
 
   return (
-    <Link href={`/show?id=${show.id}`}>
-      <div className="rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer flex flex-col">
-        <img
+    <Link href={`/show?id=${show.id}`} className="h-full min-w-0">
+      <div className="h-full rounded-xl overflow-hidden shadow-card bg-white hover:scale-[1.03] transition-transform duration-200 cursor-pointer flex flex-col">
+        {image && failedImage !== image ? (
+          <img
             src={image}
             alt={show.name}
-            className="w-full h-64 object-cover"
+            onError={() => setFailedImage(image)}
+            className="w-full h-64 object-cover shrink-0"
           />
+        ) : (
+          <div className="w-full h-64 shrink-0 bg-gray-200 flex items-center justify-center text-muted text-sm">
+            No image available
+          </div>
+        )}
         <div className="p-4 flex flex-col flex-1">
           <h3 className="font-semibold text-ink text-lg leading-tight mb-1 line-clamp-2">
             {show.name}
