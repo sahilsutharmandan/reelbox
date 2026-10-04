@@ -36,7 +36,7 @@ export default function ShowClient() {
     null;
 
   function handleSelectSeason(season) {
-    router.push(`/show?id=${id}&season=${season.number}`);
+    router.push(`/show?id=${id}&season=${season.number}`, { scroll: false });
   }
 
   useEffect(() => {

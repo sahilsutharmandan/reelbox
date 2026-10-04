@@ -78,9 +78,9 @@ export default function SearchPage() {
               onChange={setSortBy}
             />
           </div>
-          <div className="flex flex-wrap gap-6">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-6">
             {shows.map(({ show }) => (
-              <div key={show.id} className="grid flex-1 basis-60">
+              <div key={show.id} className="min-w-0">
                 <ShowCard show={show} />
               </div>
             ))}

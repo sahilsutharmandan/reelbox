@@ -117,7 +117,7 @@ export default function WatchlistClient() {
                       onChange={(e) =>
                         handleWatchedChange(show.id, e.target.value)
                       }
-                      className="w-16 px-2 py-1 border dark:border-white/20 rounded text-center text-sm"
+                      className="w-16 px-2 py-1 border dark:border-white/20 bg-canvas text-ink rounded text-center text-sm"
                     />
                     <label className="text-muted">of</label>
                     <input
@@ -127,7 +127,7 @@ export default function WatchlistClient() {
                       onChange={(e) =>
                         handleTotalChange(show.id, e.target.value)
                       }
-                      className="w-16 px-2 py-1 border dark:border-white/20 rounded text-center text-sm"
+                      className="w-16 px-2 py-1 border dark:border-white/20 bg-canvas text-ink rounded text-center text-sm"
                     />
                   </div>
 
