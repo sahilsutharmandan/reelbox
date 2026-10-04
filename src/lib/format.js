@@ -16,6 +16,11 @@ export function formatRuntime(minutes) {
   return m ? `${h}h ${m}m` : `${h}h`;
 }
 
+export function percent(part, total) {
+  if (!total) return 0;
+  return Math.round(part / total) * 100;
+}
+
 export function extractYear(dateStr) {
   if (!dateStr) return "N/A";
   return dateStr.slice(0, 4);

@@ -9,6 +9,7 @@ import {
   getProgress,
   setProgress,
 } from "@/lib/storage";
+import { percent } from "@/lib/format";
 
 export default function WatchlistClient() {
   useSearchParams();
@@ -63,10 +64,7 @@ export default function WatchlistClient() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {watchlist.map((show) => {
           const prog = progress[show.id] || { watched: 0, total: 0 };
-          const pct =
-            prog.total > 0
-              ? Math.round((prog.watched / prog.total) * 100)
-              : 0;
+          const pct = percent(prog.watched, prog.total);
 
           return (
             <div

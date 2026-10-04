@@ -1,3 +1,5 @@
+export const WATCHLIST_EVENT = "reelbox:watchlist";
+
 function getItem(key, fallback) {
   if (typeof window === "undefined") return fallback;
   try {
@@ -26,12 +28,14 @@ export function addToWatchlist(show) {
   if (list.some((s) => s.id === show.id)) return list;
   const updated = [...list, show];
   setItem("reelbox_watchlist", updated);
+  window.dispatchEvent(new Event(WATCHLIST_EVENT));
   return updated;
 }
 
 export function removeFromWatchlist(showId) {
   const list = getWatchlist().filter((s) => s.id !== showId);
   setItem("reelbox_watchlist", list);
+  window.dispatchEvent(new Event(WATCHLIST_EVENT));
   return list;
 }
 
