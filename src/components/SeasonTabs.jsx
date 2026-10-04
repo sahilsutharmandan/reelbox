@@ -6,6 +6,7 @@ export default function SeasonTabs({ seasons, activeSeason, onSelect }) {
       {seasons.map((season) => (
         <button
           key={season.id}
+          type="button"
           onClick={() => onSelect(season)}
           className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition ${
             activeSeason?.id === season.id

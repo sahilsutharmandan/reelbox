@@ -78,11 +78,9 @@ export default function SearchPage() {
               onChange={setSortBy}
             />
           </div>
-          <div className="flex flex-wrap gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {shows.map(({ show }) => (
-              <div key={show.id} className="grid flex-1 basis-60">
-                <ShowCard show={show} />
-              </div>
+              <ShowCard key={show.id} show={show} />
             ))}
           </div>
         </>

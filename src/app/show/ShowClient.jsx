@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { getShow, getEpisodesBySeason } from "@/lib/api";
 import {
   isInWatchlist,
@@ -36,7 +36,7 @@ export default function ShowClient() {
     null;
 
   function handleSelectSeason(season) {
-    router.push(`/show?id=${id}&season=${season.number}`);
+    router.push(`/show?id=${id}&season=${season.number}`, { scroll: false });
   }
 
   useEffect(() => {
@@ -45,10 +45,15 @@ export default function ShowClient() {
     }
   }, [id]);
 
-  const { data: episodes, isLoading: episodesLoading } = useQuery({
+  const {
+    data: episodes,
+    isLoading: episodesLoading,
+    isFetching: episodesFetching,
+  } = useQuery({
     queryKey: ["episodes", activeSeason?.id],
     queryFn: () => getEpisodesBySeason(activeSeason.id),
     enabled: !!activeSeason,
+    placeholderData: keepPreviousData,
   });
 
   function handleToggleWatchlist() {
@@ -113,13 +118,15 @@ export default function ShowClient() {
               activeSeason={activeSeason}
               onSelect={handleSelectSeason}
             />
-            <div className="mt-4">
-              {episodesLoading ? (
+            <div className="mt-4 min-h-[200px]">
+              {!episodes && episodesLoading ? (
                 <div className="flex justify-center py-8">
                   <div className="w-6 h-6 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
                 </div>
               ) : (
-                <EpisodeList episodes={episodes} />
+                <div className={episodesFetching ? "opacity-60 transition-opacity" : "transition-opacity"}>
+                  <EpisodeList episodes={episodes} />
+                </div>
               )}
             </div>
           </section>
