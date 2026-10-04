@@ -23,8 +23,9 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                pathname.startsWith(link.href)
+                pathname === link.href
                   ? "bg-primary/10 text-primary"
                   : "text-muted hover:text-ink hover:bg-gray-100"
               }`}
