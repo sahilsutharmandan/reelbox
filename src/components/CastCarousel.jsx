@@ -12,11 +12,14 @@ export default function CastCarousel({ cast }) {
             className="flex-shrink-0 w-36 text-center"
           >
             {member.person.image?.medium ? (
-              <img
-                src={member.person.image.medium}
-                alt={member.person.name}
-                className="w-28 h-28 rounded-full mx-auto object-cover shadow-card"
-              />
+              <div className="w-28 h-28 mx-auto rounded-full overflow-hidden ring-2 ring-primary/20 shadow-card">
+                <img
+                  src={member.person.image.medium}
+                  alt={member.person.name}
+                  loading="lazy"
+                  className="w-full h-full"
+                />
+              </div>
             ) : (
               <div className="w-28 h-28 rounded-full mx-auto bg-gray-200 flex items-center justify-center text-muted text-xs">
                 No Photo

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getShow, getEpisodesBySeason } from "@/lib/api";
 import {
@@ -15,8 +15,10 @@ import EpisodeList from "@/components/EpisodeList";
 import CastCarousel from "@/components/CastCarousel";
 
 export default function ShowClient() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const seasonParam = searchParams.get("season");
   const [inWatchlist, setInWatchlist] = useState(false);
 
   const { data: show, isLoading } = useQuery({
@@ -28,13 +30,14 @@ export default function ShowClient() {
   const seasons = useMemo(() => show?._embedded?.seasons || [], [show]);
   const cast = show?._embedded?.cast || [];
 
-  const [activeSeason, setActiveSeason] = useState(null);
+  const activeSeason =
+    seasons.find((s) => String(s.number) === seasonParam) ||
+    seasons[0] ||
+    null;
 
-  useEffect(() => {
-    if (seasons.length > 0 && !activeSeason) {
-      setActiveSeason(seasons[0]);
-    }
-  }, [seasons, activeSeason]);
+  function handleSelectSeason(season) {
+    router.push(`/show?id=${id}&season=${season.number}`);
+  }
 
   useEffect(() => {
     if (id) {
@@ -108,7 +111,7 @@ export default function ShowClient() {
             <SeasonTabs
               seasons={seasons}
               activeSeason={activeSeason}
-              onSelect={setActiveSeason}
+              onSelect={handleSelectSeason}
             />
             <div className="mt-4">
               {episodesLoading ? (

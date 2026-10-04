@@ -1,7 +1,7 @@
 export function formatDate(dateStr) {
-  if (!dateStr) return "TBA";
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("en-US", {
+  if (dateStr == null) return "TBA";
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",

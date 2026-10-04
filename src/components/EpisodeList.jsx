@@ -14,7 +14,15 @@ export default function EpisodeList({ episodes }) {
           key={ep.id}
           className="bg-white rounded-xl p-4 shadow-card"
         >
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start gap-4">
+            {ep.image?.medium && (
+              <img
+                src={ep.image.medium}
+                alt=""
+                loading="lazy"
+                className="w-48 aspect-video rounded-lg object-cover flex-shrink-0"
+              />
+            )}
             <div className="flex-1 min-w-0">
               <h4 className="font-semibold text-ink">
                 <span className="text-primary mr-2">E{ep.number}</span>
