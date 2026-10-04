@@ -45,6 +45,11 @@ export default function SortMenu({ value, options, onChange }) {
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       items[(index - 1 + items.length) % items.length].focus();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(false);
+      triggerRef.current?.focus();
     } else if (e.key === "Tab") {
       setOpen(false);
     }

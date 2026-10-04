@@ -18,7 +18,7 @@ export function formatRuntime(minutes) {
 
 export function percent(part, total) {
   if (!total) return 0;
-  return Math.round(part / total) * 100;
+  return Math.round((part / total) * 100);
 }
 
 export function extractYear(dateStr) {
