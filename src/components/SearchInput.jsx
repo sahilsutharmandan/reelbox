@@ -8,7 +8,10 @@ export default function SearchInput({ onSearch }) {
 
   useEffect(() => {
     const q = value.trim();
-    if (!q) return;
+    if (!q) {
+      onSearch("");
+      return;
+    }
     const timer = setTimeout(() => {
       onSearch(q);
     }, 300);
@@ -17,6 +20,7 @@ export default function SearchInput({ onSearch }) {
 
   function handleClear() {
     setValue("");
+    onSearch("");
     inputRef.current?.focus();
   }
 

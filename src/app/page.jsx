@@ -66,7 +66,7 @@ export default function SearchPage() {
         </p>
       )}
 
-      {shows && shows.length > 0 && (
+      {query && shows && shows.length > 0 && (
         <>
           <div className="flex items-center justify-between mb-4 text-sm">
             <p className="text-muted">

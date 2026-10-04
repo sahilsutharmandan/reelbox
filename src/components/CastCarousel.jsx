@@ -17,7 +17,7 @@ export default function CastCarousel({ cast }) {
                   src={member.person.image.medium}
                   alt={member.person.name}
                   loading="lazy"
-                  className="w-full h-full"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ) : (
