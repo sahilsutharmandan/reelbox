@@ -71,8 +71,8 @@ export default function SchedulePage() {
               <h2 className="flex items-baseline gap-3 text-xl font-bold text-ink mb-4 pb-2 border-b border-gray-200 dark:border-white/10">
                 {slot.label}
                 <span className="text-sm font-normal text-muted">
-                  {slot.entries.length}{" "}
-                  {slot.entries.length === 1 ? "show" : "shows"}
+                  {entries.length}{" "}
+                  {entries.length === 1 ? "show" : "shows"}
                 </span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
