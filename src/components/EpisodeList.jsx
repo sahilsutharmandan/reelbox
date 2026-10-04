@@ -12,7 +12,7 @@ export default function EpisodeList({ episodes }) {
       {episodes.map((ep) => (
         <div
           key={ep.id}
-          className="bg-white rounded-xl p-4 shadow-card"
+          className="bg-surface rounded-xl p-4 shadow-card"
         >
           <div className="flex items-start gap-4">
             {ep.image?.medium && (

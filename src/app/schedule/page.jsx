@@ -68,7 +68,7 @@ export default function SchedulePage() {
 
           return (
             <section key={slot.label}>
-              <h2 className="flex items-baseline gap-3 text-xl font-bold text-ink mb-4 pb-2 border-b border-gray-200">
+              <h2 className="flex items-baseline gap-3 text-xl font-bold text-ink mb-4 pb-2 border-b border-gray-200 dark:border-white/10">
                 {slot.label}
                 <span className="text-sm font-normal text-muted">
                   {slot.entries.length}{" "}

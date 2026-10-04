@@ -59,7 +59,7 @@ export default function SortMenu({ value, options, onChange }) {
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={handleTriggerKey}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-white/10 bg-surface text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <span className="text-muted">Sort:</span>
         {current.label}
@@ -70,7 +70,7 @@ export default function SortMenu({ value, options, onChange }) {
           ref={menuRef}
           role="menu"
           onKeyDown={handleMenuKey}
-          className="absolute right-0 z-30 mt-2 w-44 py-1 rounded-xl border border-gray-200 bg-white shadow-card"
+          className="absolute right-0 z-30 mt-2 w-44 py-1 rounded-xl border border-gray-200 dark:border-white/10 bg-surface shadow-card"
         >
           {options.map((o) => (
             <button

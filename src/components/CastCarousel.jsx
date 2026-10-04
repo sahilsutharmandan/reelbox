@@ -21,7 +21,7 @@ export default function CastCarousel({ cast }) {
                 />
               </div>
             ) : (
-              <div className="w-28 h-28 rounded-full mx-auto bg-gray-200 flex items-center justify-center text-muted text-xs">
+              <div className="w-28 h-28 rounded-full mx-auto bg-gray-200 dark:bg-white/10 flex items-center justify-center text-muted text-xs">
                 No Photo
               </div>
             )}

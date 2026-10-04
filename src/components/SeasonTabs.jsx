@@ -2,7 +2,7 @@
 
 export default function SeasonTabs({ seasons, activeSeason, onSelect }) {
   return (
-    <div className="sticky top-16 z-20 -mx-4 px-4 py-2 flex gap-2 overflow-x-auto scrollbar-hide bg-gray-50/95 backdrop-blur">
+    <div className="sticky top-16 z-20 -mx-4 px-4 py-2 flex gap-2 overflow-x-auto scrollbar-hide bg-canvas/95 backdrop-blur">
       {seasons.map((season) => (
         <button
           key={season.id}

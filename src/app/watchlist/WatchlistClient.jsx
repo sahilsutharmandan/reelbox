@@ -69,7 +69,7 @@ export default function WatchlistClient() {
           return (
             <div
               key={show.id}
-              className="rounded-xl overflow-hidden shadow-card bg-white flex flex-col"
+              className="rounded-xl overflow-hidden shadow-card bg-surface flex flex-col"
             >
               <Link href={`/show?id=${show.id}`}>
                 {show.image?.medium ? (
@@ -79,7 +79,7 @@ export default function WatchlistClient() {
                     className="w-full h-48 object-cover"
                   />
                 ) : (
-                  <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-muted text-sm">
+                  <div className="w-full h-48 bg-gray-200 dark:bg-white/10 flex items-center justify-center text-muted text-sm">
                     No Image
                   </div>
                 )}
@@ -99,7 +99,7 @@ export default function WatchlistClient() {
                         {prog.watched}/{prog.total} ({pct}%)
                       </span>
                     </div>
-                    <div className="w-full bg-gray-100 rounded-full h-2">
+                    <div className="w-full bg-gray-100 dark:bg-white/10 rounded-full h-2">
                       <div
                         className="bg-primary h-2 rounded-full transition-all"
                         style={{ width: `${pct}%` }}
@@ -117,7 +117,7 @@ export default function WatchlistClient() {
                       onChange={(e) =>
                         handleWatchedChange(show.id, e.target.value)
                       }
-                      className="w-16 px-2 py-1 border rounded text-center text-sm"
+                      className="w-16 px-2 py-1 border dark:border-white/20 rounded text-center text-sm"
                     />
                     <label className="text-muted">of</label>
                     <input
@@ -127,13 +127,13 @@ export default function WatchlistClient() {
                       onChange={(e) =>
                         handleTotalChange(show.id, e.target.value)
                       }
-                      className="w-16 px-2 py-1 border rounded text-center text-sm"
+                      className="w-16 px-2 py-1 border dark:border-white/20 rounded text-center text-sm"
                     />
                   </div>
 
                   <button
                     onClick={() => handleRemove(show.id)}
-                    className="w-full py-2 text-sm text-red-500 hover:bg-red-50 rounded-lg transition font-medium"
+                    className="w-full py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition font-medium"
                   >
                     Remove
                   </button>
