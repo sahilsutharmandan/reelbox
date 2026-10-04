@@ -17,8 +17,19 @@ export default function SortMenu({ value, options, onChange }) {
     function handlePointer(e) {
       if (!rootRef.current?.contains(e.target)) setOpen(false);
     }
+    function handleKeyDown(e) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+    }
     document.addEventListener("mousedown", handlePointer);
-    return () => document.removeEventListener("mousedown", handlePointer);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointer);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [open]);
 
   function choose(next) {
@@ -32,6 +43,7 @@ export default function SortMenu({ value, options, onChange }) {
       e.preventDefault();
       setOpen(true);
     } else if (e.key === "Escape") {
+      e.preventDefault();
       setOpen(false);
     }
   }
@@ -47,6 +59,10 @@ export default function SortMenu({ value, options, onChange }) {
       items[(index - 1 + items.length) % items.length].focus();
     } else if (e.key === "Tab") {
       setOpen(false);
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      setOpen(false);
+      triggerRef.current?.focus();
     }
   }
 
